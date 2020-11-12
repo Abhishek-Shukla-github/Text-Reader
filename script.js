@@ -120,3 +120,16 @@ const message = new SpeechSynthesisUtterance();
 
 //Fetching the voices by triggering the event
 speechSynthesis.addEventListener("voiceschanged", getVoices);
+
+
+//Setting the voice
+function setVoice(e) {
+    message.voice = voices.find((voice) => voice.name === e.target.value);
+}
+voiceSelect.addEventListener("change", setVoice);
+
+//Reeading the text in textArea
+readBtn.addEventListener("click", () => {
+    setText(textArea.value);
+    speakText();
+})
