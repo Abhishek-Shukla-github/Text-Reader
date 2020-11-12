@@ -66,7 +66,26 @@ const createBox = (item) => {
         <img src="${img}" alt="${text}">
         <p class="info">${text}</p>
     `;
+    //Adding eventListener to speak the text when box is clicked
+    box.addEventListener("click", () => {
+        setText(text);
+        speakText();
+
+        //Add the active class effect
+        box.classList.add("active");
+        setTimeout(()=>box.classList.remove("active"), 800);
+    })
+
     main.appendChild(box);
+}
+
+//Defining the setText and speakText functions
+function setText(text) {
+    message.text = text;
+}
+
+function speakText() {
+    speechSynthesis.speak(message);
 }
 
 data.forEach(createBox);
@@ -95,6 +114,9 @@ function getVoices() {
         voiceSelect.appendChild(option);
     })
 }
+
+//Initializing the speech synthesis
+const message = new SpeechSynthesisUtterance();
 
 //Fetching the voices by triggering the event
 speechSynthesis.addEventListener("voiceschanged", getVoices);
