@@ -4,6 +4,7 @@ const textBox = document.querySelector("#text-box");
 const close = document.querySelector("#close");
 const textArea = document.querySelector("#text");
 const readBtn = document.querySelector("#read");
+const voiceSelect = document.querySelector("#voiceSelect");
 
 const data = [
     {
@@ -79,3 +80,21 @@ toggleBtn.addEventListener("click", () => {
 close.addEventListener("click", () => {
     document.querySelector("#text-box").classList.toggle("show");
 })
+
+//Fetching all the voices and displaying it in select option
+let voices = [];
+
+function getVoices() {
+    voices= speechSynthesis.getVoices();
+    voices.forEach((voice) => {
+        let option = document.createElement("option");
+        option.value = `${voice.name}`;
+        option.innerText = `${voice.name} ${voice.lang}`;
+        option.classList.add("option");
+
+        voiceSelect.appendChild(option);
+    })
+}
+
+//Fetching the voices by triggering the event
+speechSynthesis.addEventListener("voiceschanged", getVoices);
