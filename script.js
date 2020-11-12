@@ -8,7 +8,7 @@ const readBtn = document.querySelector("#read");
 const data = [
     {
         img: "./img/angry.jpg",
-        text:"I'm Angry"
+        text:"I'm Angry",
     },
     {
         img: "./img/drink.jpg",
@@ -58,7 +58,13 @@ const data = [
 
 //Creating the box
 const createBox = (item) => {
-    console.log(item);
+    const { img, text } = item;
+    const box = document.createElement("div");
+    box.innerHTML = `
+        <img src="${img}" alt="${text}">
+        <p class="info">${text}</p>
+    `;
+    main.appendChild(box);
 }
 
 data.forEach(createBox);
