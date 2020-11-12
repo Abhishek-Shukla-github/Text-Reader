@@ -60,6 +60,7 @@ const data = [
 const createBox = (item) => {
     const { img, text } = item;
     const box = document.createElement("div");
+    box.classList.add("box");
     box.innerHTML = `
         <img src="${img}" alt="${text}">
         <p class="info">${text}</p>
