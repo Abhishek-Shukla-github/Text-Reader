@@ -1,4 +1,4 @@
-const toggle = document.querySelector("#toggle");
+const toggleBtn = document.querySelector("#toggle");
 const main = document.querySelector("main");
 const textBox = document.querySelector("#text-box");
 const close = document.querySelector("#close");
@@ -69,3 +69,13 @@ const createBox = (item) => {
 }
 
 data.forEach(createBox);
+
+//Toggle text reader box
+toggleBtn.addEventListener("click", () => { 
+    document.getElementById("text-box").classList.toggle("show");
+})
+
+//Toggling the Close(X) button
+close.addEventListener("click", () => {
+    document.querySelector("#text-box").classList.toggle("show");
+})
